@@ -35,6 +35,7 @@ body::before {
   filter: blur(8px); /* Apply blur only to the background image */
   z-index: -1; /* Ensure it is behind the content */
   width: 100%; /* Ensure it stretches to fill the screen width */
+  
   height: 100%; /* Ensure it stretches to fill the screen height */
 }
 
