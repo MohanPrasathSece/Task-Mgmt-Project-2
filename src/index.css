@@ -1,82 +1,353 @@
-/* index.css */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+/* General Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-.App {
-  text-align: center;
-  margin: 20px;
+/* Body Styling */
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the body takes up the full viewport height */
+  position: relative;
 }
 
+/* Background image and overlay */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("C:\Users\mohan\Downloads\5137782.png"); /* Background image */
+  background-size: cover; /* Ensure the image covers the full screen */
+  background-position: center; /* Center the background image */
+  background-attachment: fixed; /* Fix background image while scrolling */
+  background-repeat: no-repeat;
+  filter: blur(8px); /* Apply blur only to the background image */
+  z-index: -1; /* Ensure it is behind the content */
+  width: 100%; /* Ensure it stretches to fill the screen width */
+  height: 100%; /* Ensure it stretches to fill the screen height */
+}
+
+/* Overlay effect */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(110, 198, 255, 0.2), rgba(255, 119, 182, 0.2)); /* Reduced opacity overlay */
+  z-index: -1;
+  opacity: 0.3; /* Reduced opacity */
+  animation: backgroundAnimation 8s ease-in-out infinite alternate;
+}
+
+/* Background Animation */
+@keyframes backgroundAnimation {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Header Styling */
+.header {
+  background-color: rgba(52, 152, 219, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 80%;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  position: relative;
+  z-index: 10;
+}
+
+.header h1 {
+  color: #ffffff;
+  font-size: 2.5em;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.header h1:hover {
+  transform: translateY(-6px);
+}
+
+/* Container Styling */
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1200px;
+  transition: transform 0.5s ease;
+  padding: 0 20px;
 }
 
-.column {
-  background-color: #fff;
-  padding: 20px;
+/* Add Task Button inside the container */
+.add-task-btn {
+  background-color: #ff6f61; /* Light Pink */
+  color: white;
+  padding: 12px 20px;
   border-radius: 8px;
-  width: 30%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-h3 {
-  color: #333;
+.add-task-btn:hover {
+  background-color: #f44336; /* Darker Red */
+  transform: scale(1.05);
+}
+
+/* Column Styling */
+.column {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 12px;
+  width: 28%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  animation: slideUp 1s ease-out;
+}
+
+.column:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.22);
+}
+
+.column h3 {
+  color: #ff6f61;
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.column h3:hover {
+  color: #ff4081;
 }
 
 .task-count {
-  color: #777;
+  color: #607d8b;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
+/* Task Box Styling */
 .task {
-  background-color: #f9f9f9;
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  background-color: rgba(163, 217, 255, 0.85);
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-in-out;
+  max-width: 90%;
+  width: auto;
 }
 
+.task:hover {
+  background-color: rgba(129, 201, 244, 0.85);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.task span {
+  font-size: 0.8em;
+  background-color: #ffffff;
+  color: #3498db;
+  padding: 4px 8px;
+  border-radius: 6px;
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  font-weight: bold;
+}
+
+/* Task Button */
 .task button {
-  background-color: #ff5c5c;
+  background-color: #ff6f61;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .task button:hover {
-  background-color: #ff1c1c;
+  background-color: #f44336;
+  transform: scale(1.05);
 }
 
+/* Add Task Section */
 .add-task {
-  margin-top: 20px;
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.add-task input,
-.add-task select {
-  padding: 8px;
-  margin: 5px;
-  width: 80%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.add-task input {
+  flex: 1;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #333;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.add-task input:focus {
+  border-color: #3498db;
+  outline: none;
 }
 
 .add-task button {
-  padding: 8px 15px;
+  padding: 12px 20px;
   border: none;
-  background-color: #4caf50;
+  background-color: rgb(16, 245, 16);
   color: white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-task button:hover {
-  background-color: #45a049;
+  background-color:#0cb806;
+  transform: scale(1.05);
+}
+
+.add-task select {
+  background-color: #f3fbff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 12px;
+  color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Floating Action Button inside the container */
+.fab {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  background-color: #ff6f61;
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 70%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.5s ease-out;
+}
+
+.modal-header {
+  font-size: 1.6em;
+  margin-bottom: 20px;
+  color: #3498db;
+}
+
+.modal-body {
+  color: #333;
+  font-size: 1.3em;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+.modal button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #2980b9;
 }
