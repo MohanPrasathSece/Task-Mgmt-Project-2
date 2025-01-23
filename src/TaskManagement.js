@@ -4,14 +4,14 @@ import React, { useState } from "react";
 function TaskManagement() {
   const [tasks, setTasks] = useState({
     todo: [
-      { name: "Task 1", assignedTo: "Alice" },
-      { name: "Task 2", assignedTo: "Bob" },
+      { name: "Task 1", assignedTo: "Mohan" },
+      { name: "Task 2", assignedTo: "Ram" },
     ],
-    inProgress: [{ name: "Task 3", assignedTo: "Charlie" }],
-    done: [{ name: "Task 4", assignedTo: "Alice" }],
+    inProgress: [{ name: "Task 3", assignedTo: "Mathi" }],
+    done: [{ name: "Task 4", assignedTo: "Irfan" }],
   });
 
-  const [teamMembers] = useState(["Alice", "Bob", "Charlie", "David"]);
+  const [teamMembers] = useState(["Mohan", "Ram", "Mathi", "Irfan"]);
   const [taskInput, setTaskInput] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
 
