@@ -1,16 +1,11 @@
-// App.js
 import React from "react";
 import TaskManagement from "./TaskManagement";
+import './App.css'; // Importing the CSS file
 
 function App() {
   return (
     <div className="App">
-      <div className="header">
-        <h1>Team Task Management</h1>
-        <div className="header-sub">
-          Organize and track tasks with ease!
-        </div>
-      </div>
+      <h1 className="app-heading"> Team Task Management</h1>
       <TaskManagement />
     </div>
   );
